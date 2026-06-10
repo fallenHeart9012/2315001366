@@ -1,9 +1,11 @@
 const express = require("express");
 const notifications = require("./notifications");
+const logger = require("../logging_middleware/middleware/logger");
 
 const app = express();
 
 app.use(express.json());
+app.use(logger);
 
 // Create notification
 app.post("/notifications", (req, res) => {

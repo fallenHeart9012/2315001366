@@ -1,9 +1,9 @@
 const express = require("express");
+const logger = require("../logging_middleware/middleware/logger");
 
 const app = express();
-
 app.use(express.json());
-
+app.use(logger);
 let vehicles = [];
 
 app.post("/vehicles", (req, res) => {
