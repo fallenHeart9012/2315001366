@@ -22,6 +22,23 @@ app.get("/vehicles", (req, res) => {
 
 });
 app.get("/vehicles/upcoming", (req, res) => {
+    const {
+    owner,
+    vehicleNumber,
+    lastServiceDate,
+    serviceIntervalDays
+} = req.body;
+
+if (
+    !owner ||
+    !vehicleNumber ||
+    !lastServiceDate ||
+    !serviceIntervalDays
+) {
+    return res.status(400).json({
+        message: "All fields are required"
+    });
+}
 
     const upcoming = vehicles.map(vehicle => {
 

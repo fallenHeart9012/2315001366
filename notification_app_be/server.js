@@ -56,6 +56,24 @@ app.delete("/notifications/:id", (req, res) => {
         message: "Notification deleted"
     });
 });
+app.put("/notifications/:id", (req, res) => {
+
+    const notification = notifications.find(
+        n => n.id == req.params.id
+    );
+
+    if (!notification) {
+        return res.status(404).json({
+            message: "Notification not found"
+        });
+    }
+
+    notification.title = req.body.title;
+    notification.message = req.body.message;
+
+    res.json(notification);
+
+});
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");
